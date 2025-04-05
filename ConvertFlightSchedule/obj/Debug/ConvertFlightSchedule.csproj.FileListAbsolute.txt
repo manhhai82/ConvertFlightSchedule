@@ -1,0 +1,11 @@
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\bin\Debug\ConvertFlightSchedule.exe.config
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\bin\Debug\ConvertFlightSchedule.exe
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\bin\Debug\ConvertFlightSchedule.pdb
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.csproj.AssemblyReference.cache
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.Properties.Resources.resources
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.csproj.GenerateResource.cache
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.csproj.CoreCompileInputs.cache
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.exe
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.pdb
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.FormMain.resources
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.FormSheetSelect.resources
