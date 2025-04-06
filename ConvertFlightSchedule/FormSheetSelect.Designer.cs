@@ -33,11 +33,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbxRows = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -46,7 +43,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(554, 127);
+            this.groupBox1.Size = new System.Drawing.Size(284, 127);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chọn Sheet";
@@ -57,18 +54,17 @@
             this.lbxSheets.FormattingEnabled = true;
             this.lbxSheets.Location = new System.Drawing.Point(3, 16);
             this.lbxSheets.Name = "lbxSheets";
-            this.lbxSheets.Size = new System.Drawing.Size(548, 108);
+            this.lbxSheets.Size = new System.Drawing.Size(278, 108);
             this.lbxSheets.TabIndex = 0;
-            this.lbxSheets.SelectedIndexChanged += new System.EventHandler(this.lbxSheets_SelectedIndexChanged);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 444);
+            this.panel1.Location = new System.Drawing.Point(0, 199);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(554, 62);
+            this.panel1.Size = new System.Drawing.Size(284, 62);
             this.panel1.TabIndex = 1;
             // 
             // btnCancel
@@ -95,41 +91,20 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.lbxRows);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 127);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(554, 317);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chọn dòng tiêu đề";
-            // 
-            // lbxRows
-            // 
-            this.lbxRows.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbxRows.FormattingEnabled = true;
-            this.lbxRows.Location = new System.Drawing.Point(3, 16);
-            this.lbxRows.Name = "lbxRows";
-            this.lbxRows.Size = new System.Drawing.Size(548, 298);
-            this.lbxRows.TabIndex = 0;
-            // 
             // FormSheetSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 506);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormSheetSelect";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chọn";
             this.Load += new System.EventHandler(this.FormSheetSelect_Load);
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -141,7 +116,5 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox lbxRows;
     }
 }

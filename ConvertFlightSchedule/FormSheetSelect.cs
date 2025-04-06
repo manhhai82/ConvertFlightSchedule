@@ -15,18 +15,18 @@ namespace ConvertFlightSchedule
         public string[] sheetNames { get; set; }
         public string sheetName { get; set; }
 
-        public string[] rows { get; set; }
-        public int rowIndex { get; set; }
+        public string fileName { get; set; }
 
         public FormSheetSelect()
         {
             InitializeComponent();
+            fileName = "";
         }
 
         public FormSheetSelect(string strFileName)
         {
             InitializeComponent();
-            sheetNames = Helper.GetWorkSheets(strFileName);
+            fileName = strFileName;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -51,15 +51,13 @@ namespace ConvertFlightSchedule
 
         private void FormSheetSelect_Load(object sender, EventArgs e)
         {
+            if (sheetNames==null)
+                sheetNames = Helper.GetWorkSheets(fileName);
             if (sheetNames != null)
             {
                 lbxSheets.DataSource = sheetNames;
             }
         }
 
-        private void lbxSheets_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

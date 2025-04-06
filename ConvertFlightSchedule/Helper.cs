@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -42,7 +43,17 @@ namespace ConvertFlightSchedule
             }
             return sheetNames;
         }
+        private static DateTime ConvertExcelDateToDateTime(double excelDate)
+        {
+            // Excel's base date is 1900-01-01
+            DateTime excelBaseDate = new DateTime(1900, 1, 1);
 
+            // Excel dates are stored as the number of days since 1900-01-01
+            // If there is a time part, it will be represented as a fraction of a day.
+            DateTime result = excelBaseDate.AddDays(excelDate - 2);  // Subtract 2 because Excel incorrectly treats 1900 as a leap year.
+
+            return result;
+        }
         public static System.Data.DataTable ConvertToDataTable(string path, string sheetName)
 
         {
@@ -75,9 +86,15 @@ namespace ConvertFlightSchedule
                 while (((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
 
                 {
-
-                    dt.Columns.Add(Convert.ToString(((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2));
-
+                    if (((Excel.Range)workSheet.Cells[rowIndex, temp]).Value.GetType() == typeof(DateTime))
+                    {
+                        double excelDate = Convert.ToDouble(((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2);
+                        DateTime dateValue = ConvertExcelDateToDateTime(excelDate);
+                        dt.Columns.Add(dateValue.ToString("yyyy-MM-dd"));
+                    }
+                    else
+                        dt.Columns.Add(Convert.ToString(((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2).Trim().ToUpper());
+                    
                     temp++;
 
                 }
@@ -98,7 +115,7 @@ namespace ConvertFlightSchedule
 
                     {
 
-                        row[i - 1] = Convert.ToString(((Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                        row[i - 1] = Convert.ToString(((Excel.Range)workSheet.Cells[rowIndex, i]).Value2).Trim().ToUpper();
 
                     }
 
@@ -109,8 +126,6 @@ namespace ConvertFlightSchedule
                     temp = 1;
 
                 }
-
-                
                 
             }
 
@@ -134,82 +149,7 @@ namespace ConvertFlightSchedule
             return dt;
 
         }
-
-        //public static DataTable ImportOperationLevelTaskByExcelFile(string fileName, string sheetName, int AssetCategoryID, int AssetID, int OperationLevelID, int ProcedureID, int FormID, DateTime LastUpdate, int LastUpdaterID)
-        //{
-        //    try
-        //    {
-        //        int num = 0;
-        //        DataTable dataTable1 = ConvertToDataTable(fileName, sheetName);
-        //        for (int index = 0; index < dataTable1.Columns.Count; ++index)
-        //        {
-        //            if (dataTable1.Columns[index].ColumnName.Equals("STT"))
-        //                ++num;
-        //            else if (dataTable1.Columns[index].ColumnName.Equals("NỘI DUNG KIỂM TRA HÀNG NGÀY"))
-        //                ++num;
-
-        //        }
-        //        if (num < 2)
-        //            return -1;
-        //        num = 0;
-        //        for (int index = 0; index < dataTable1.Rows.Count; ++index)
-        //        {
-        //            DataRow row = dataTable1.Rows[index];
-        //            string str1 = row["STT"].ToString().Trim();
-        //            string str2 = row["NỘI DUNG KIỂM TRA HÀNG NGÀY"].ToString().Trim();
-
-        //            SqlCommand sCommand = new SqlCommand("Ins_vcaOperationLevelTask");
-        //            sCommand.CommandType = CommandType.StoredProcedure;
-        //            SqlParameter sqlParameter1 = new SqlParameter("@TaskSerial", SqlDbType.NVarChar, 100);
-        //            sqlParameter1.Value = str1;
-        //            sCommand.Parameters.Add(sqlParameter1);
-        //            SqlParameter sqlParameter2 = new SqlParameter("@TaskContent", SqlDbType.NVarChar, 500);
-        //            sqlParameter2.Value = str2;
-        //            sCommand.Parameters.Add(sqlParameter2);
-
-
-        //            SqlParameter sqlParameter7 = new SqlParameter("@AssetCategoryID", SqlDbType.Int, 0);
-        //            sqlParameter7.Value = AssetCategoryID;
-        //            sCommand.Parameters.Add(sqlParameter7);
-        //            SqlParameter sqlParameter8 = new SqlParameter("@AssetID", SqlDbType.Int, 0);
-        //            sqlParameter8.Value = AssetID;
-        //            sCommand.Parameters.Add(sqlParameter8);
-        //            SqlParameter sqlParameter9 = new SqlParameter("@OperationLevelID", SqlDbType.Int, 0);
-        //            sqlParameter9.Value = OperationLevelID;
-        //            sCommand.Parameters.Add(sqlParameter9);
-        //            SqlParameter sqlParameter10 = new SqlParameter("@ProcedureID", SqlDbType.Int, 0);
-        //            sqlParameter10.Value = ProcedureID;
-        //            sCommand.Parameters.Add(sqlParameter10);
-        //            SqlParameter sqlParameter11 = new SqlParameter("@FormID", SqlDbType.Int, 0);
-        //            sqlParameter11.Value = FormID;
-        //            sCommand.Parameters.Add(sqlParameter11);
-        //            SqlParameter sqlParameter12 = new SqlParameter("@LastUpdate", SqlDbType.DateTime, 0);
-        //            sqlParameter12.Value = LastUpdate;
-        //            sCommand.Parameters.Add(sqlParameter12);
-        //            SqlParameter sqlParameter13 = new SqlParameter("@LastUpdaterID", SqlDbType.Int, 0);
-        //            sqlParameter13.Value = LastUpdaterID;
-        //            sCommand.Parameters.Add(sqlParameter13);
-
-        //            /*qlParameter result = new SqlParameter("@Result", SqlDbType.Int, 0)
-        //            {
-        //                Value = 0,
-        //                Direction = ParameterDirection.ReturnValue
-        //            };
-        //            sCommand.Parameters.Add(result);*/
-        //            //int rowCount = dataLayer.ExecuteCommand(sCommand);
-        //            //if (rowCount < 0)
-        //            //    rowCount *= -1;
-        //            ////int entryID = (int)result.Value;
-        //            //num = num + rowCount;
-        //            //sCommand.Dispose();
-        //        }
-        //        return num;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+        
         public static int ExportToExcel(string ExcelFilePath, string FlightType, System.Data.DataTable dtFlightData, DateTime dateToExport)
         {
             int result = 0;
@@ -220,7 +160,10 @@ namespace ConvertFlightSchedule
             {
                 
                 object missValue = System.Reflection.Missing.Value;
-                string templateFileName = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\" + (FlightType == "A" ? "Arrival" : "Departure") + " Template.xltx";
+                //string templateFileName = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\" + (FlightType == "A" ? "Arrival" : "Departure") + " Template.xltx";
+                string currentPath = System.IO.Directory.GetCurrentDirectory();
+                string templateFileName = currentPath + @"\Templates\" + (FlightType == "A" ? "Arrival" : "Departure") + " Template.xltx";
+                Console.WriteLine(templateFileName);
                 xlsApp = new Excel.Application();
                 xlsWorkBook = xlsApp.Workbooks.Add(templateFileName);
                 xlsWorkSheet = xlsWorkBook.Worksheets.get_Item(1) as Excel.Worksheet;
@@ -268,8 +211,11 @@ namespace ConvertFlightSchedule
         {
             try
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Object);
-                Object = null;
+                if (Object != null)
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(Object);
+                    Object = null;
+                }
             }
             catch (Exception ex)
             {
