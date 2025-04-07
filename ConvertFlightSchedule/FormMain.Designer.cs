@@ -33,23 +33,23 @@
             this.dgvFlightSchedule = new System.Windows.Forms.DataGridView();
             this.tpOutput = new System.Windows.Forms.TabPage();
             this.tbxConsole = new System.Windows.Forms.TextBox();
+            this.tpTest = new System.Windows.Forms.TabPage();
+            this.dgvTest = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.statStrip = new System.Windows.Forms.StatusStrip();
-            this.tssProBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tssLblNotice = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssProBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tssLblVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tpTest = new System.Windows.Forms.TabPage();
-            this.dgvTest = new System.Windows.Forms.DataGridView();
             this.tctMain.SuspendLayout();
             this.tpData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFlightSchedule)).BeginInit();
             this.tpOutput.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.statStrip.SuspendLayout();
             this.tpTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTest)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.statStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tctMain
@@ -110,6 +110,26 @@
             this.tbxConsole.Size = new System.Drawing.Size(994, 621);
             this.tbxConsole.TabIndex = 8;
             // 
+            // tpTest
+            // 
+            this.tpTest.Controls.Add(this.dgvTest);
+            this.tpTest.Location = new System.Drawing.Point(4, 22);
+            this.tpTest.Name = "tpTest";
+            this.tpTest.Padding = new System.Windows.Forms.Padding(3);
+            this.tpTest.Size = new System.Drawing.Size(1000, 627);
+            this.tpTest.TabIndex = 2;
+            this.tpTest.Text = "Test";
+            this.tpTest.UseVisualStyleBackColor = true;
+            // 
+            // dgvTest
+            // 
+            this.dgvTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvTest.Location = new System.Drawing.Point(3, 3);
+            this.dgvTest.Name = "dgvTest";
+            this.dgvTest.Size = new System.Drawing.Size(994, 621);
+            this.dgvTest.TabIndex = 0;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnExport);
@@ -123,6 +143,7 @@
             // btnExport
             // 
             this.btnExport.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnExport.Enabled = false;
             this.btnExport.Image = global::ConvertFlightSchedule.Properties.Resources.ButExport;
             this.btnExport.Location = new System.Drawing.Point(909, 0);
             this.btnExport.Name = "btnExport";
@@ -158,13 +179,6 @@
             this.statStrip.TabIndex = 12;
             this.statStrip.Text = "statStrip";
             // 
-            // tssProBar
-            // 
-            this.tssProBar.AutoSize = false;
-            this.tssProBar.Name = "tssProBar";
-            this.tssProBar.Size = new System.Drawing.Size(150, 16);
-            this.tssProBar.Visible = false;
-            // 
             // tssLblNotice
             // 
             this.tssLblNotice.AutoSize = false;
@@ -174,6 +188,13 @@
             this.tssLblNotice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tssLblNotice.Visible = false;
             // 
+            // tssProBar
+            // 
+            this.tssProBar.AutoSize = false;
+            this.tssProBar.Name = "tssProBar";
+            this.tssProBar.Size = new System.Drawing.Size(150, 16);
+            this.tssProBar.Visible = false;
+            // 
             // tssLblVersion
             // 
             this.tssLblVersion.AutoSize = false;
@@ -181,26 +202,6 @@
             this.tssLblVersion.Size = new System.Drawing.Size(200, 17);
             this.tssLblVersion.Text = "v1.0.0";
             this.tssLblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tpTest
-            // 
-            this.tpTest.Controls.Add(this.dgvTest);
-            this.tpTest.Location = new System.Drawing.Point(4, 22);
-            this.tpTest.Name = "tpTest";
-            this.tpTest.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTest.Size = new System.Drawing.Size(1000, 627);
-            this.tpTest.TabIndex = 2;
-            this.tpTest.Text = "Test";
-            this.tpTest.UseVisualStyleBackColor = true;
-            // 
-            // dgvTest
-            // 
-            this.dgvTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvTest.Location = new System.Drawing.Point(3, 3);
-            this.dgvTest.Name = "dgvTest";
-            this.dgvTest.Size = new System.Drawing.Size(994, 621);
-            this.dgvTest.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -220,11 +221,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFlightSchedule)).EndInit();
             this.tpOutput.ResumeLayout(false);
             this.tpOutput.PerformLayout();
+            this.tpTest.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTest)).EndInit();
             this.panel1.ResumeLayout(false);
             this.statStrip.ResumeLayout(false);
             this.statStrip.PerformLayout();
-            this.tpTest.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

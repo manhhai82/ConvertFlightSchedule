@@ -11,7 +11,8 @@ namespace ConvertFlightSchedule
         public void LogWrite(string logMessage)
         {
 
-            string currentPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments); //System.IO.Directory.GetCurrentDirectory();
+            //string currentPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments); //System.IO.Directory.GetCurrentDirectory();
+            string currentPath = System.IO.Directory.GetCurrentDirectory();
             if (!Directory.Exists(currentPath + @"\Log"))
             {
                 Directory.CreateDirectory(currentPath + @"\Log");

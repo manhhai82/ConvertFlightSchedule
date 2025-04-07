@@ -22,3 +22,5 @@ D:\Projects\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightS
 D:\Projects\ConvertFlightSchedule\ConvertFlightSchedule\obj\Debug\ConvertFlightSchedule.pdb
 D:\Projects\ConvertFlightSchedule\ConvertFlightSchedule\bin\Debug\Templates\Arrival Template.xltx
 D:\Projects\ConvertFlightSchedule\ConvertFlightSchedule\bin\Debug\Templates\Departure Template.xltx
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\bin\Debug\Templates\Arrival Template.xltx
+C:\Users\xuanhai\Documents\GitHub\ConvertFlightSchedule\ConvertFlightSchedule\bin\Debug\Templates\Departure Template.xltx

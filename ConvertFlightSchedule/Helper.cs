@@ -82,6 +82,10 @@ namespace ConvertFlightSchedule
                 workSheet = (Excel.Worksheet)workBook.Worksheets[sheetName];
 
                 int temp = 1;
+                while (((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 == null && Convert.ToInt32(rowIndex) < 64)
+                {
+                    rowIndex = Convert.ToInt32(rowIndex) + 1;
+                }
 
                 while (((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
 
@@ -90,7 +94,7 @@ namespace ConvertFlightSchedule
                     {
                         double excelDate = Convert.ToDouble(((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2);
                         DateTime dateValue = ConvertExcelDateToDateTime(excelDate);
-                        dt.Columns.Add(dateValue.ToString("yyyy-MM-dd"));
+                        dt.Columns.Add(dateValue.ToString("dd-MMM-yyyy"));
                     }
                     else
                         dt.Columns.Add(Convert.ToString(((Excel.Range)workSheet.Cells[rowIndex, temp]).Value2).Trim().ToUpper());
@@ -150,7 +154,7 @@ namespace ConvertFlightSchedule
 
         }
         
-        public static int ExportToExcel(string ExcelFilePath, string FlightType, System.Data.DataTable dtFlightData, DateTime dateToExport)
+        public static int ExportToExcel(string ExcelFilePath, string FlightType, System.Data.DataTable dtFlightData, string strDateToExport)
         {
             int result = 0;
             Excel._Application xlsApp = null;
@@ -163,7 +167,7 @@ namespace ConvertFlightSchedule
                 //string templateFileName = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\" + (FlightType == "A" ? "Arrival" : "Departure") + " Template.xltx";
                 string currentPath = System.IO.Directory.GetCurrentDirectory();
                 string templateFileName = currentPath + @"\Templates\" + (FlightType == "A" ? "Arrival" : "Departure") + " Template.xltx";
-                Console.WriteLine(templateFileName);
+                
                 xlsApp = new Excel.Application();
                 xlsWorkBook = xlsApp.Workbooks.Add(templateFileName);
                 xlsWorkSheet = xlsWorkBook.Worksheets.get_Item(1) as Excel.Worksheet;
@@ -187,7 +191,7 @@ namespace ConvertFlightSchedule
                     xlsColIndex = 2;
                     xlsRowIndex++;
                 }
-                xlsWorkSheet.Cells[6, 16] = "'" + dateToExport.ToString("dd-MMM-yyyy");
+                xlsWorkSheet.Cells[6, 16] = "'" + strDateToExport;
                 xlsApp.DisplayAlerts = false;
                 xlsWorkBook.SaveAs(ExcelFilePath, missValue, missValue, missValue, missValue, missValue, Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missValue, missValue, missValue, missValue);
                 xlsWorkBook.Close(true, missValue, missValue);
